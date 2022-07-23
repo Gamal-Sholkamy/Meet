@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "559153037396",
+    "project_id": "meet-gsh912",
+    "storage_bucket": "meet-gsh912.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:559153037396:android:b4b1b7ce0d8ce277faedc1",
+        "android_client_info": {
+          "package_name": "meet.application.gamal.sholkamy.meet"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "559153037396-u2nkd1do8n24tie121mf9jpcg542kuhk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA5bo1a1gts8rxIFLRd3499A2TFWJOd3B8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "559153037396-u2nkd1do8n24tie121mf9jpcg542kuhk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
