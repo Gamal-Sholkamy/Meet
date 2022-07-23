@@ -11,7 +11,7 @@ void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   await CacheHelper.init();
   Widget startScreen;
-  bool onBoarding=CacheHelper.getData(key: "onBoarding");
+  bool onBoarding=CacheHelper.getData(key: "onBoarding")??false;
   if(onBoarding){
     startScreen= LoginScreen();
   }
@@ -37,7 +37,7 @@ class MyApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           theme: lightTheme,
           darkTheme: darkTheme,
-          themeMode: ThemeMode.light,
+          themeMode: ThemeMode.dark,
           home: startScreen,
 
         ),

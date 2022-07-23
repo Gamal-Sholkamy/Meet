@@ -30,13 +30,13 @@ class _LoginScreenState extends State<LoginScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                  "LOGIN",style: GoogleFonts.habibi().copyWith(fontSize: 26,fontWeight: FontWeight.bold,)),
+                  "LOGIN",style: Theme.of(context).textTheme.bodyText1?.copyWith(fontSize: 26,fontWeight: FontWeight.bold,)),
               const SizedBox(
                 height: 10,),
               Text(
                   "Login now to communicat with your community",style: GoogleFonts.aBeeZee().copyWith(fontSize: 16,fontWeight: FontWeight.normal,)),
               const SizedBox(
-                height: 20,),
+                height: 25,),
               TextFormField(
                 controller: _emailController,
                 keyboardType: TextInputType.emailAddress,
@@ -50,11 +50,11 @@ class _LoginScreenState extends State<LoginScreen> {
                   }
                 },
                 maxLines: 1,
-                decoration:  const InputDecoration(
+                decoration:   InputDecoration(
                   hintText: "Enter your email address",
-                  label: Text("Email Address"),
-                  prefixIcon: Icon(IconBroken.Message),
-                  border: OutlineInputBorder(
+                  label: Text("Email Address",style: Theme.of(context).textTheme.bodyText1,),
+                  prefixIcon: const Icon(IconBroken.Message),
+                  border:const  OutlineInputBorder(
                     borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(10),
                       topRight: Radius.circular(10),
@@ -81,13 +81,13 @@ class _LoginScreenState extends State<LoginScreen> {
                   }
                 },
                 maxLines: 1,
-                decoration:  const InputDecoration(
-                  label: Text("Password"),
+                decoration:   InputDecoration(
+                  label: Text("Password",style: Theme.of(context).textTheme.bodyText1,),
                   hintText: "Enter your Password",
-                  prefixIcon: Icon(IconBroken.Lock),
-                  suffixIcon: Icon(IconBroken.Show),
+                  prefixIcon: const Icon(IconBroken.Lock),
+                  suffixIcon: const Icon(IconBroken.Show),
                   //suffixIcon: Icon(Icons.visibility),
-                  border: OutlineInputBorder(
+                  border: const OutlineInputBorder(
                       borderRadius: BorderRadius.only(
                         bottomRight: Radius.circular(10),
                         bottomLeft: Radius.circular(10),
@@ -100,7 +100,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
               ),
               const SizedBox(
-                height: 15,),
+                height: 25,),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -115,7 +115,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 ],
               ),
               const SizedBox(
-                height: 15,),
+                height: 25,),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -128,6 +128,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   TextButton(
                       onPressed: (){
                         Navigator.push(context, MaterialPageRoute(builder: (context)=>RegisterScreen()));
+                        dispose();
                       },
                       child: Text("REGISTER NOW",style: GoogleFonts.aBeeZee().copyWith(fontSize: 16),))
                 ],
