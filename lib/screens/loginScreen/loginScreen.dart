@@ -8,7 +8,7 @@ class LoginScreen extends StatelessWidget{
   Widget build(BuildContext context) {
     return  Scaffold(
       appBar: AppBar(),
-      body:  const Center(child: Icon(IconBroken.Arrow___Down_Circle,size: 50,),),
+      body:  const Center(child: Icon(IconBroken.Arrow___Down_Circle,size: 20,),),
     );
   }
 }
