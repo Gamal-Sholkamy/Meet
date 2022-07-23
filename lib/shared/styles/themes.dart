@@ -32,7 +32,7 @@ ThemeData lightTheme=ThemeData(
     elevation: 0.0,
 
   ),
-  iconTheme: const IconThemeData(color: Colors.black,),
+  //iconTheme: const IconThemeData(color: Colors.black,),
   fontFamily: "jannah",
   textTheme: const TextTheme(
       bodyText1: TextStyle(color: Colors.black)
@@ -41,6 +41,7 @@ ThemeData lightTheme=ThemeData(
 );
 
 ThemeData darkTheme=ThemeData(
+
   scaffoldBackgroundColor: Colors.black,
   primaryColor: Colors.blue,
   primarySwatch: Colors.blue,

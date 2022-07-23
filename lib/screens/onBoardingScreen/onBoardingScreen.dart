@@ -18,7 +18,7 @@ class OnBoardingScreen extends StatelessWidget{
           TextButton(
               onPressed: (){
                 CacheHelper.saveData(key: 'onBoarding', value: true).then((value) {
-                  Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context)=>const LoginScreen()), (route) => false);
+                  Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context)=>LoginScreen()), (route) => false);
                 });
 
               },
@@ -69,7 +69,7 @@ class OnBoardingScreen extends StatelessWidget{
                       onPressed: (){
                         if(state is OnBoardingLastPageState){
                           CacheHelper.saveData(key: 'onBoarding', value: true).then((value) {
-                            Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context)=>const LoginScreen()), (route) => false);
+                            Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context)=>LoginScreen()), (route) => false);
                           });
                           //  Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context)=>LoginScreen()), (route) => false);
                         }
