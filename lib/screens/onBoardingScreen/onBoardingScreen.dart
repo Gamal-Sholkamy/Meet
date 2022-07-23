@@ -4,6 +4,7 @@ import 'package:meet/cubits/onBoardingCubit/cubit.dart';
 import 'package:meet/cubits/onBoardingCubit/states.dart';
 import 'package:meet/screens/loginScreen/loginScreen.dart';
 import 'package:meet/shared/local/cacheHelper.dart';
+import 'package:meet/shared/styles/icon_broken.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class OnBoardingScreen extends StatelessWidget{
@@ -77,7 +78,7 @@ class OnBoardingScreen extends StatelessWidget{
                               curve:Curves.easeInToLinear );
                         }
                       },
-                      child: const Icon(Icons.arrow_forward_ios),
+                      child: const Icon(IconBroken.Arrow___Right),
 
                     );
                   },
