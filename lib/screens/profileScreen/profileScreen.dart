@@ -1,22 +1,112 @@
 import 'package:flutter/material.dart';
-import 'package:meet/shared/styles/icon_broken.dart';
 
-class FeedsScreen extends StatelessWidget{
-  const FeedsScreen({Key? key}) : super(key: key);
+import '../../shared/styles/icon_broken.dart';
+
+class ProfileScreen extends StatelessWidget{
+  const ProfileScreen({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
 
     return Scaffold(
-      body: ListView.separated(
-        clipBehavior: Clip.antiAliasWithSaveLayer,
-          physics:const BouncingScrollPhysics (),
-          itemBuilder: (context,index)=>buildPostItem(context),
-          separatorBuilder:(context,index)=>const SizedBox(
-            height: 4,),
-          itemCount: 25),
-      floatingActionButton: FloatingActionButton(
-        onPressed: (){},
-        child: const Icon(IconBroken.Upload),
+      body: SingleChildScrollView(
+        physics: const BouncingScrollPhysics(),
+
+        child: Column(
+          children: [
+            Container(
+              height: 205,
+              child: Stack(
+                alignment: Alignment.bottomCenter,
+                children: [
+                  Align(
+                    alignment: Alignment.topCenter,
+                    child: Container(
+                      height: 180,
+                      decoration: const BoxDecoration(
+                        image: DecorationImage(
+                          fit: BoxFit.cover,
+                          image: AssetImage("assets/images/3.jpg",),
+                        ),
+                          borderRadius:  BorderRadius.only(
+                            topRight: Radius.circular(8),
+                             topLeft : Radius.circular(8)
+                          )  ),
+                    ),
+                  ),
+
+                  const CircleAvatar(
+                    radius: 41,
+                    child: CircleAvatar(
+                      radius: 40,
+                      backgroundImage: AssetImage("assets/images/6.jpg"),
+                    ),
+                  ),
+
+                ],
+              ),
+            ),
+            const SizedBox(height: 10,),
+            Text("Gamal Sholkamy",
+              style: Theme.of(context).textTheme.bodyText1?.copyWith(fontSize: 22,),
+            ),
+            const SizedBox(height: 10,),
+            Text("Flutter Developer....",
+              maxLines: 3,
+              overflow: TextOverflow.ellipsis,
+              style: Theme.of(context).textTheme.bodyText1?.copyWith(fontSize: 17,color: Colors.grey[600]),
+            ),
+            const SizedBox(height: 15,),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Column(
+                    children: [
+                      Text("462",style: Theme.of(context).textTheme.bodyText1?.copyWith(color:Colors.grey[600],fontSize: 18),),
+                      Text("Post",style: Theme.of(context).textTheme.bodyText1?.copyWith(fontSize: 18),),
+                    ],
+                  ),
+                  const Spacer(),
+                  Column(
+                    children: [
+                      Text("52",style: Theme.of(context).textTheme.bodyText1?.copyWith(color:Colors.grey[600],fontSize: 18),),
+                      Text("Photo",style: Theme.of(context).textTheme.bodyText1?.copyWith(fontSize: 18),),
+                    ],
+                  ),
+                  const Spacer(),
+                  Column(
+                    children: [
+                      Text("869",style: Theme.of(context).textTheme.bodyText1?.copyWith(color:Colors.grey[600],fontSize: 18),),
+                      Text("Friend",style: Theme.of(context).textTheme.bodyText1?.copyWith(fontSize: 18),),
+                    ],
+                  ),
+                  const Spacer(),
+                  Column(
+                    children: [
+                      Text("1496",style: Theme.of(context).textTheme.bodyText1?.copyWith(color:Colors.grey[600],fontSize: 18),),
+                      Text("Follower",style: Theme.of(context).textTheme.bodyText1?.copyWith(fontSize: 18),),
+                    ],
+                  ),
+
+                ],
+              ),
+            ),
+            const SizedBox(height: 15,),
+            OutlinedButton(onPressed: (){},
+                child: Text("Edit Profile",style: Theme.of(context).textTheme.bodyText1?.copyWith(fontSize: 18),)),
+            ListView.separated(
+                  shrinkWrap: true,
+
+                    clipBehavior: Clip.antiAliasWithSaveLayer,
+                    physics:const BouncingScrollPhysics (),
+                    itemBuilder: (context,index)=>buildPostItem(context),
+                    separatorBuilder:(context,index)=>const SizedBox(
+                      height: 4,),
+                    itemCount: 25),
+
+          ],
+        ),
       ),
     );
   }

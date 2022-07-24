@@ -5,7 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 TextTheme textTheme=GoogleFonts.aBeeZeeTextTheme();
 TextTheme lightTextTheme=textTheme.copyWith(
   bodyText1: textTheme.bodyText1!.copyWith(
-    color: Colors.black
+    color: Colors.black,fontSize: 18
   ),
     bodyText2: textTheme.bodyText2!.copyWith(
     color: Colors.black)

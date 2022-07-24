@@ -6,6 +6,8 @@ import 'package:meet/cubits/homeCubit/states.dart';
 import 'package:meet/models/userModel.dart';
 import 'package:meet/screens/chatsScreen/chatsScreen.dart';
 import 'package:meet/screens/feedsScreen/feedsScreen.dart';
+import 'package:meet/screens/loginScreen/loginScreen.dart';
+import 'package:meet/screens/profileScreen/profileScreen.dart';
 import 'package:meet/screens/settingsScreen/settingsScreen.dart';
 import 'package:meet/screens/usersScreen/usersScreen.dart';
 import 'package:meet/shared/local/cacheHelper.dart';
@@ -14,24 +16,22 @@ class HomeCubit extends Cubit<HomeStates> {
   HomeCubit() : super(HomeInitialState());
 
   static HomeCubit get(context) => BlocProvider.of(context);
-  int selectedIndex = 0;
-  List<String> appBarTitles = ["Feeds", "Chats", "Users", "Settings"];
+  int selectedIndex = 2;
+  List<String> appBarTitles = ["Chats","Users","Feeds","Profile", "Settings"];
   List<Widget> bodyScreens = [
-    const FeedsScreen(),
     const ChatsScreen(),
     const UsersScreen(),
+    const FeedsScreen(),
+    const ProfileScreen(),
     const SettingsScreen()
   ];
 
   void changeBottomNavSelectedIndex(int index) {
     /// get users if index = 1;
     selectedIndex = index;
-
-    emit(ChangeBottomNavSelectedIndexState());
+    emit(HomeChangeBottomNavSelectedIndexState());
   }
-
   UserModel? userModel;
-
   void getUserData() {
     String userID = CacheHelper.getData(key: 'userID');
     emit(HomeGetUserLoadingState());
@@ -47,4 +47,12 @@ class HomeCubit extends Cubit<HomeStates> {
           emit(HomeGetUserErrorState(onError.toString()));
     });
   }
+  bool isDark=false;
+  void changeAppMode(){
+      isDark=!isDark;
+      CacheHelper.saveData(key: "isDark", value:isDark);
+      emit(HomeChangeAppModeState());
+
+  }
+
 }

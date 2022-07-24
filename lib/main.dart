@@ -16,6 +16,14 @@ void main() async{
   await CacheHelper.init();
   await Firebase.initializeApp();
   Widget startScreen;
+  ThemeMode appMode=ThemeMode.dark;
+  bool isDark=CacheHelper.getData(key: "isDark")??false;
+  if(isDark){
+    appMode=ThemeMode.dark;
+  }
+  else {
+     appMode=ThemeMode.light;
+  }
   bool onBoarding=CacheHelper.getData(key: "onBoarding")??false;
   String? userID=CacheHelper.getData(key: "userID");
   if(onBoarding){
@@ -29,12 +37,13 @@ void main() async{
   else {
     startScreen=OnBoardingScreen();
   }
-  runApp( MyApp(startScreen));
+  runApp( MyApp( appMode: appMode, startScreen: startScreen,));
 }
 
 class MyApp extends StatelessWidget {
+  final ThemeMode appMode;
    final Widget startScreen;
-   const MyApp(this.startScreen, {Key? key}) : super(key: key);
+   const MyApp( {Key? key,required this.appMode, required this.startScreen}) : super(key: key);
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -51,10 +60,7 @@ class MyApp extends StatelessWidget {
           darkTheme: darkTheme,
           themeMode: ThemeMode.light,
           home: startScreen,
-
         ),
     );
   }
 }
-
-
