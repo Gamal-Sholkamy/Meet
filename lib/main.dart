@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meet/cubits/homeCubit/cubit.dart';
 import 'package:meet/cubits/loginCubit/cubit.dart';
 import 'package:meet/cubits/onBoardingCubit/cubit.dart';
+import 'package:meet/cubits/profileCubit/cubit.dart';
 import 'package:meet/cubits/registerCubit/cubit.dart';
 import 'package:meet/screens/homeScreen/homeScreen.dart';
 import 'package:meet/screens/loginScreen/loginScreen.dart';
@@ -53,6 +54,9 @@ class MyApp extends StatelessWidget {
           BlocProvider(create: (BuildContext context)=>RegisterCubit()),
           BlocProvider(create: (BuildContext context)=>LoginCubit()),
           BlocProvider(create: (BuildContext context)=>HomeCubit()..getUserData()),
+          BlocProvider(create: (BuildContext context)=>ProfileCubit()..getUserProfileData()),
+
+
         ],
         child:MaterialApp(
           debugShowCheckedModeBanner: false,

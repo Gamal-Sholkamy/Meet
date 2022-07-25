@@ -35,7 +35,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
         listener: (context,state){
           if(state is RegisterCreateUserSuccessState){
             CacheHelper.saveData(key: "userID", value: state.userID);
-            //dispose();
+
             Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context)=>HomeScreen()), (route) => false);
           }
         },
