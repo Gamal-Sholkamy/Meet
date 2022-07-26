@@ -17,10 +17,10 @@ class HomeCubit extends Cubit<HomeStates> {
 
   static HomeCubit get(context) => BlocProvider.of(context);
   int selectedIndex = 2;
-  List<String> appBarTitles = ["Chats","Users","Feeds","Profile", "Settings"];
+  List<String> appBarTitles = ["Users","Chats","Feeds","Profile", "Settings"];
   List<Widget> bodyScreens = [
-    const ChatsScreen(),
     const UsersScreen(),
+    const ChatsScreen(),
     const FeedsScreen(),
     const ProfileScreen(),
     const SettingsScreen()
@@ -31,22 +31,22 @@ class HomeCubit extends Cubit<HomeStates> {
     selectedIndex = index;
     emit(HomeChangeBottomNavSelectedIndexState());
   }
-  UserModel? userModel;
-  void getUserData() {
-    String userID = CacheHelper.getData(key: 'userID');
-    emit(HomeGetUserLoadingState());
-    FirebaseFirestore.instance
-        .collection('users')
-        .doc(userID)
-        .get()
-        .then((value) {
-          userModel=UserModel.fromJson(value.data()!);
-          emit(HomeGetUserSuccessState());
-    })
-        .catchError((onError) {
-          emit(HomeGetUserErrorState(onError.toString()));
-    });
-  }
+  // UserModel? userModel;
+  // void getUserData() {
+  //   String userID = CacheHelper.getData(key: 'userID');
+  //   emit(HomeGetUserLoadingState());
+  //   FirebaseFirestore.instance
+  //       .collection('users')
+  //       .doc(userID)
+  //       .get()
+  //       .then((value) {
+  //         userModel=UserModel.fromJson(value.data()!);
+  //         emit(HomeGetUserSuccessState());
+  //   })
+  //       .catchError((onError) {
+  //         emit(HomeGetUserErrorState(onError.toString()));
+  //   });
+  // }
   bool isDark=false;
   void changeAppMode(){
       isDark=!isDark;

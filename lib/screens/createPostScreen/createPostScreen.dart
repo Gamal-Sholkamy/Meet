@@ -7,6 +7,8 @@ import 'package:meet/models/postModel.dart';
 import 'package:meet/models/userModel.dart';
 import 'package:meet/screens/feedsScreen/feedsScreen.dart';
 import 'package:meet/screens/homeScreen/homeScreen.dart';
+import 'package:meet/screens/loginScreen/loginScreen.dart';
+import 'package:meet/screens/registerScreen/registerScreen.dart';
 import 'package:meet/shared/styles/icon_broken.dart';
 
 class CreatePostScreen extends StatelessWidget{
@@ -33,8 +35,10 @@ class CreatePostScreen extends StatelessWidget{
 
                        }
                        else {
-                         createPostCubit.createPost(dateTime: DateTime.now().toString(), text: _postTextController.text);
-                         Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context)=>HomeScreen()), (route) => false);
+                         //Navigator.push(context, MaterialPageRoute(builder: (context)=>LoginScreen()));
+
+                          createPostCubit.uploadPostImage(dateTime: DateTime.now().toString(), text: _postTextController.text);
+                          Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context)=>HomeScreen()), (route) => false);
 
                        }
                      },

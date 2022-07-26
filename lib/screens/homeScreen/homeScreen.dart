@@ -31,8 +31,6 @@ class HomeScreen extends StatelessWidget{
                     homeCubit.changeAppMode();
                   }, icon: const Icon(IconBroken.Edit_Square)),
                 const SizedBox(width: 10,)
-
-
               ],
             ),
             body:  homeCubit.bodyScreens[homeCubit.selectedIndex],
@@ -50,7 +48,8 @@ class HomeScreen extends StatelessWidget{
                 homeCubit.changeBottomNavSelectedIndex(index);
               },
               items: const[
-                TabItem(icon:  Icon(IconBroken.Chat,color: Colors.blue,), title:  "Chat"),                TabItem(icon:  Icon(IconBroken.User,color: Colors.blue,), title:  "Users"),
+                TabItem(icon:  Icon(IconBroken.User,color: Colors.blue,), title:  "Users"),
+                TabItem(icon:  Icon(IconBroken.Chat,color: Colors.blue,), title:  "Chat"),
                 TabItem(icon:  Icon(IconBroken.Home,color: Colors.blue,), title:  "Home"),
                 TabItem(icon:  Icon(IconBroken.Profile,color: Colors.blue,), title:  "Profile"),
                 TabItem(icon:  Icon(IconBroken.Setting,color: Colors.blue,), title:  "Setting"),
