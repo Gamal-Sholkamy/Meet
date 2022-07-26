@@ -56,8 +56,8 @@ ThemeData lightTheme=ThemeData(
         primary: Colors.black,
         backgroundColor: Colors.blue,
         padding: const EdgeInsets.symmetric(
-          horizontal: 50,
-          vertical: 8,
+          horizontal: 20,
+          vertical: 4,
         )
     ),
   ),
@@ -126,7 +126,7 @@ ThemeData darkTheme=ThemeData(
       primary: Colors.white,
           backgroundColor: Colors.blue,
       padding: const EdgeInsets.symmetric(
-        horizontal: 50,
+        horizontal: 10,
         vertical: 8,
       )
     ),

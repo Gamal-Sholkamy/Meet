@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:meet/cubits/feedsCubit/cubit.dart';
 import 'package:meet/cubits/homeCubit/cubit.dart';
 import 'package:meet/cubits/loginCubit/cubit.dart';
 import 'package:meet/cubits/onBoardingCubit/cubit.dart';
@@ -54,7 +55,9 @@ class MyApp extends StatelessWidget {
           BlocProvider(create: (BuildContext context)=>RegisterCubit()),
           BlocProvider(create: (BuildContext context)=>LoginCubit()),
           BlocProvider(create: (BuildContext context)=>HomeCubit()..getUserData()),
+          BlocProvider(create: (BuildContext context)=>FeedsCubit()..getUserFeedsData()),
           BlocProvider(create: (BuildContext context)=>ProfileCubit()..getUserProfileData()),
+          BlocProvider(create: (BuildContext context)=>FeedsCubit()..getUserFeedsData()..getPosts()),
 
 
         ],

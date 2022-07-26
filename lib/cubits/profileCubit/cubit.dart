@@ -13,8 +13,6 @@ class ProfileCubit extends Cubit<ProfileStates> {
 
   static ProfileCubit get(context) => BlocProvider.of(context);
   UserModel userModel=UserModel();
-  PostModel? postModel;
-
   void getUserProfileData() {
     emit(ProfileGetUserDataLoadingState());
     String userID = CacheHelper.getData(key: 'userID');

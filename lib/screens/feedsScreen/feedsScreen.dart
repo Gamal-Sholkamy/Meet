@@ -1,26 +1,51 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:meet/cubits/createPostCubit/states.dart';
+import 'package:meet/cubits/feedsCubit/cubit.dart';
+import 'package:meet/cubits/feedsCubit/states.dart';
+import 'package:meet/models/postModel.dart';
+import 'package:meet/models/userModel.dart';
+import 'package:meet/screens/createPostScreen/createPostScreen.dart';
 import 'package:meet/shared/styles/icon_broken.dart';
 
 class FeedsScreen extends StatelessWidget{
   const FeedsScreen({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+   return BlocConsumer<FeedsCubit,FeedsStates>(
+        listener:(context,state){},
+        builder: (context,state){
+          if (state is! FeedsInitialState){
+            FeedsCubit feedsCubit =FeedsCubit.get(context);
+            UserModel userModel=feedsCubit.userModel;
+            PostModel postModel=feedsCubit.postModel;
+            return Scaffold(
+              body: ListView.separated(
+                  clipBehavior: Clip.antiAliasWithSaveLayer,
+                  physics:const BouncingScrollPhysics (),
+                  itemBuilder: (context,index)=>buildPostItem(context,feedsCubit.posts[index]),
+                  separatorBuilder:(context,index)=>const SizedBox(
+                    height: 4,),
+                  itemCount: feedsCubit.posts.length),
+              floatingActionButton: FloatingActionButton(
+                onPressed: (){
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=>CreatePostScreen()));
+                },
+                child: const Icon(IconBroken.Upload),
+              ),
+            );
+          }
+          else{
+            return const Scaffold(
+              body: Center(child: CircularProgressIndicator(),),
+            );
+          }
+        },
 
-    return Scaffold(
-      body: ListView.separated(
-        clipBehavior: Clip.antiAliasWithSaveLayer,
-          physics:const BouncingScrollPhysics (),
-          itemBuilder: (context,index)=>buildPostItem(context),
-          separatorBuilder:(context,index)=>const SizedBox(
-            height: 4,),
-          itemCount: 25),
-      floatingActionButton: FloatingActionButton(
-        onPressed: (){},
-        child: const Icon(IconBroken.Upload),
-      ),
-    );
+   );
+
   }
-  Widget buildPostItem (context)=>Card(
+  Widget buildPostItem (context,PostModel postModel)=>Card(
 
     color: Theme.of(context).appBarTheme.backgroundColor,
     elevation: 0.0,
@@ -29,14 +54,15 @@ class FeedsScreen extends StatelessWidget{
       padding: const EdgeInsets.all(8.0),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const CircleAvatar(
+               CircleAvatar(
                 radius: 25,
-                backgroundImage: AssetImage("assets/images/4.jpg"),
+                backgroundImage: NetworkImage('${postModel.image}')
               ),
               const SizedBox(
                 width: 10,
@@ -48,15 +74,15 @@ class FeedsScreen extends StatelessWidget{
                   Row(
                     children: [
 
-                      Text("Gamal Sholkamy",
+                      Text("${postModel.name}",
                         style: Theme.of(context).textTheme.bodyText1?.copyWith(fontSize: 19,),
                       ),
                       const SizedBox(width: 6,),
                       const Icon(Icons.check_circle,size: 18,color: Colors.blue,),
                     ],
                   ),
-                  Text("17 mar",
-                    style: Theme.of(context).textTheme.bodyText1?.copyWith(fontSize:16 ,color: Colors.grey),)
+                  Text("'${postModel.dateTime}'",
+                    style: Theme.of(context).textTheme.bodyText1?.copyWith(fontSize:14 ,color: Colors.grey),)
                 ],
               ),
               const Spacer(),
@@ -78,7 +104,7 @@ class FeedsScreen extends StatelessWidget{
           ),
           const SizedBox(
             height: 4,),
-          Text("In my career, I have been very privileged to be in a role in which there is always an abundance of complex situations and problems to be solved, but also positive people looking to solve these problems together",
+          Text("'${postModel.text}'",
             maxLines: 4,
             overflow: TextOverflow.ellipsis,
             style: Theme.of(context).textTheme.bodyText1?.copyWith(
@@ -101,15 +127,16 @@ class FeedsScreen extends StatelessWidget{
             ],
           ),
           const SizedBox(height: 5,),
+          if(postModel.postImage!="")
           Card(
             clipBehavior: Clip.antiAliasWithSaveLayer,
             elevation: 0.0,
             child: Container(
               width: double.infinity,
               height: 180,
-              decoration:const BoxDecoration(
+              decoration: BoxDecoration(
                 image:  DecorationImage(
-                  image: AssetImage("assets/images/1.jpg"),
+                  image: NetworkImage("'${postModel.postImage}'"),
                   fit: BoxFit.cover,
 
                 ),
@@ -122,7 +149,7 @@ class FeedsScreen extends StatelessWidget{
               mainAxisAlignment: MainAxisAlignment.start,
               children:  [
                 const Icon(IconBroken.Heart,size: 28,),
-                Text("1456",style: Theme.of(context).textTheme.bodyText1?.copyWith(fontSize: 18),),
+                Text("'${FeedsCubit.get(context).likes.length}'",style: Theme.of(context).textTheme.bodyText1?.copyWith(fontSize: 18),),
                 const Spacer(),
                 const Icon(IconBroken.Swap,size: 28,),
                 Text("125",style: Theme.of(context).textTheme.bodyText1?.copyWith(fontSize: 18),),
